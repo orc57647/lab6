@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <style>
+        body {
+            background-image: url('https://i.redd.it/h3c3mc7kit751.jpg');
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            min-height: 100vh; /* Ensure the body covers the entire viewport height */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            text-align: center; /* Center text */
+        }
+        .form-container p {
+            margin-bottom: 10px; /* Add more spacing below each paragraph */
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container form input[type="submit"] {
+            margin-top: 15px; /* Add more spacing above the submit button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Report Summary Page for Submission</h1>
+            <p>Username: {{ username }}</p>
+            <p>User ID: {{ user_id }}</p>
+            <p>Date/Time: {{ date_time }}</p>
+            <p>IP Address: {{ ip_address }}</p>
+            <p>Latitude: {{ latitude }}</p>
+            <p>Longitude: {{ longitude }}</p>
+            <p>State: {{ state }}</p>
+            <p>Country: {{ country }}</p>
+            <p>Current Temperature During Submission: {{ temp }}</p>
+            <p>File: {{ file_name }}</p>
+            <p>Descrption: {{ description }}</p>
+            <p>Characterization of Descrption: {{ char_desc }}</p>
+            <form action="/" method="GET">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

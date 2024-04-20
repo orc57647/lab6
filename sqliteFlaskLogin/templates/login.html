@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/17/94/55/17945505e448b1b1e0407e869ac367b4.jpg');
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            padding-left: 200px;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-right: 50px;
+            text-align: center; /* Center text horizontally */
+        }
+        .form-container form {
+            margin-bottom: 0;
+        }
+        .form-container form input {
+            margin-bottom: 10px;
+        }
+        .header {
+            margin-bottom: 20px; /* Add margin below the header */
+        }
+        .header h1 {
+            margin: 0; /* Remove default margin for h1 */
+        }
+    </style>    
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <div class="header">
+            <h1 class="word">Log In</h1>
+        </div>
+        <form action="/" method="POST">
+            <input id="username" name="username" type="username" placeholder="Enter Your Username" class="textbox"/><br><br>
+            <input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/><br><br>
+            <input type="hidden" name="action" value="login">  <!-- Hidden input field for login -->
+            <input type="submit" class="btn" value="Login"><br><br>
+        </form>
+    </div>
+    <div class="form-container">
+        <div class="header">
+            <h1 class="word">Register</h1>
+        </div>
+        <div class="msg">{{ fail_msg }}</div>
+        <div class="msg">{{ success_msg }}</div>
+        <form action="/" method="POST">
+            <input id="username" name="username" type="username" placeholder="Register Your Username" class="textbox"/><br><br>
+            <input id="password" name="password" type="password" placeholder="Register Your Password" class="textbox"/><br><br>
+            <input type="hidden" name="action" value="register">  <!-- Hidden input field for register -->
+            <input type="submit" class="btn" value="Register"><br><br>
+        </form>
+    </div>
+    <div class="form-container">
+        <div class="header">
+            <h1 class="word">Data Dashboard</h1>
+        </div>
+        <form action="/data" method="GET">
+            <input type="submit" value="Go to Data">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>You have successfully logged in! Insert data below:</title>
+    <style>
+        body {
+            background-image: url('https://s1.1zoom.me/b5050/913/Castles_Dragons_448011_1920x1080.jpg');
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            min-height: 100vh; /* Ensure the body covers the entire viewport height */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            text-align: center; /* Center text */
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container form label {
+            margin-bottom: 10px; /* Add more spacing below the label */
+        }
+        .form-container form input[type="file"] {
+            margin-bottom: 15px; /* Add more spacing below the file input */
+        }
+        .form-container form textarea {
+            margin-bottom: 15px; /* Add more spacing below the textarea */
+        }
+        .form-container form input[type="submit"] {
+            margin-top: 15px; /* Add more spacing above the submit button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Welcome {{ username }} to Your Data Insert Page</h1>
+            <p>Your API Key: {{ api_key }}</p>
+        
+            <!-- Display current GPS coordinates -->
+            <p id="gps-coordinates"></p>
+            
+            <!-- Button to get GPS coordinates -->
+            <button onclick="getGPS()">Get GPS Coordinates</button>
+        
+            <form id="data-form" action="/report" method="POST" enctype="multipart/form-data">
+                <label for="file">File:</label>
+                <input type="file" id="file" name="file" onchange="getFile()"> <!-- Call getFile() when file is selected -->
+                <p id="file-name"></p> <!-- Placeholder to display the file name -->
+                
+                <label for="description">Description of File or Anything:</label>
+                <textarea id="description" name="description" rows="3" cols="40" placeholder="Enter Description"></textarea>
+                
+                <input type="hidden" id="lat" name="lat" value="">
+                <input type="hidden" id="lon" name="lon" value="">
+                <input type="hidden" name="api_key" value="{{ api_key }}">
+                
+                <input type="submit" value="Submit">
+            </form>
+        
+            <form action="/" method="GET">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Function to get GPS coordinates
+        function getGPS() {
+            // Check if geolocation is supported
+            if (navigator.geolocation) {
+                // Get current position
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    
+        // Function to display GPS coordinates
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var coordinates = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+            document.getElementById("gps-coordinates").innerHTML = coordinates;
+            document.getElementById("lat").value = latitude; // Set latitude value in hidden input
+            document.getElementById("lon").value = longitude; // Set longitude value in hidden input
+        }
+        // Function to get file name when file is selected
+        function getFile() {
+            var fileInput = document.getElementById('file');
+            var fileName = fileInput.files[0].name; // Get the file name
+            document.getElementById('file-name').innerHTML = "File Name: " + fileName; // Display file name
+    }
+    </script>
+</body>
+</html>
